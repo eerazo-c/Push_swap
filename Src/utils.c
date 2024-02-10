@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:02:37 by eerazo-c          #+#    #+#             */
-/*   Updated: 2024/02/01 13:04:06 by eerazo-c         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:56:40 by eerazo-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Inc/push_swap.h"
@@ -49,7 +49,7 @@ int	lstsize(t_stack *lst)
 
 int	ft_limit_check(long nb, t_stack **a)
 {
-	if (!(nb <= INT_MAX && nb >= INT_MIN))
+	if (!(nb < INT_MAX && nb > INT_MIN))
 	{
 		ft_free(a);
 		ft_error();

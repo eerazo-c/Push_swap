@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 01:09:46 by eerazo-c          #+#    #+#             */
-/*   Updated: 2024/02/01 14:47:23 by eerazo-c         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:32:38 by eerazo-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Inc/push_swap.h"
@@ -39,11 +39,12 @@ int	num_check(int ac, char *av)
 {
 	int	i;
 
-	if (ac < 2)
-		return (-1);
+	(void)ac;
 	i = 0;
 	if ((av[i] == '-') || (av[i] == '+'))
 		i++;
+	if (av[i] == '\0')
+		return (-1);
 	while (av[i] != '\0')
 	{
 		if (ft_isdigit(av[i]) == 0)
@@ -55,29 +56,19 @@ int	num_check(int ac, char *av)
 
 int	ft_error(void)
 {
-	write (1, "Error\n", 6);
+	write (1, "\e[0;31mError\e[0m\n", 17);
+	exit(1);
 	return (-1);
 }
 
-void	ft_free(t_stack **a)
+void	ft_free(t_stack **stack)
 {
-	t_stack	*new;
 	t_stack	*aux;
-	t_stack	*p;
 
-	if (*a == NULL)
-		return ;
-	new = *a;
-	p = NULL;
-	while (new != NULL)
+	while (*stack)
 	{
-		p = aux;
-		aux = new;
-		new = new->next;
+		aux = (*stack)->next;
+		free(*stack);
+		*stack = aux;
 	}
-	free(aux);
-	if (p != NULL)
-		p->next = NULL;
-	*a = NULL;
-	ft_free(a);
 }

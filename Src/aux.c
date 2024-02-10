@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:37:52 by eerazo-c          #+#    #+#             */
-/*   Updated: 2024/02/01 14:47:19 by eerazo-c         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:10:13 by eerazo-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Inc/push_swap.h"
@@ -16,7 +16,7 @@ int	ft_operate(t_stack **a, t_stack **b)
 	if (ft_status_sort(*a) == 0)
 	{
 		ft_free(a);
-		write (1, "Esta ordenado\n", 14);
+		exit(0);
 	}
 	if (lstsize(*a) == 2)
 		ft_sort2(a);

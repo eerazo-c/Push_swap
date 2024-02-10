@@ -6,34 +6,28 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:23:26 by eerazo-c          #+#    #+#             */
-/*   Updated: 2024/01/31 17:16:36 by eerazo-c         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:14:34 by eerazo-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Inc/push_swap.h"
 
-static t_stack	*get_next(t_stack **stack)
+static int	get_index(t_stack **stack, int num)
 {
 	t_stack	*head;
-	t_stack	*min;
 	int		has_min;
 
-	min = NULL;
-	has_min = 0;
 	head = *stack;
+	has_min = 0;
 	if (head)
 	{
 		while (head)
 		{
-			if ((head->index == -1) && \
-					(!has_min || head->content < min->content))
-			{
-				min = head;
-				has_min = 1;
-			}
+			if (head->content < num)
+				has_min++;
 			head = head->next;
 		}
 	}
-	return (min);
+	return (has_min);
 }
 
 static int	get_max_bits(t_stack **stack)
@@ -62,11 +56,11 @@ void	ft_index_stack(t_stack **stack)
 	int		index2;
 
 	index2 = 0;
-	minimizator = get_next(stack);
+	minimizator = *stack;
 	while (minimizator)
 	{
-		minimizator->index = index2++;
-		minimizator = get_next(stack);
+		minimizator->index = get_index(stack, minimizator->content);
+		minimizator = minimizator->next;
 	}
 }
 
